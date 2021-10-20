@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Hotel_Selection">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/backbutton"
+        android:id="@+id/back_button"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"></ImageView>
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="105dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Hotel"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="italic"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="90dp"
+        android:text="Selection"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="italic"></TextView>
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="15dp"
+        android:gravity="center_horizontal"
+        android:textColor="#5F5C59"
+        android:text="Hotel Name"
+        ></EditText>
+    <View
+        android:background="#000"
+        android:layout_width="160dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginStart="15dp"
+        android:layout_gravity="center"
+        android:layout_height="0.6dp"
+
+        />
+
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="215dp"
+        android:gravity="center_horizontal"
+        android:textColor="#5F5C59"
+        android:text="Location"
+        ></EditText>
+    <View
+        android:background="#000"
+        android:layout_width="160dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginStart="215dp"
+        android:layout_gravity="center"
+        android:layout_height="0.6dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="39dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/main_screen_button_bg"
+        ></ImageView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="256dp"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:text="SEARCH"
+        ></TextView>
+
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="300dp"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:text="Result"
+        ></TextView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="350dp"></androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

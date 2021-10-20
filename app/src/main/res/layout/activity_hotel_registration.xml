@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HotelRegistration">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/backbutton"
+        android:id="@+id/back_button"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"></ImageView>
+    <TextView
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="Registered Hotels"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        ></TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="200dp"></androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
