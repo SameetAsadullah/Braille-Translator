@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sameetasadullah.i180479_i180531">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Project_Code">
+        <activity
+            android:name=".HotelRegistration"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Hotel_Selection"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Hotel_Registration_Screen"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".Hotel_Reservation_Screen"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".Reserve_Screen"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Vendor_Choose_Option_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".Customer_Choose_Option_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".Register_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".Login_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".Main_Screen"
+            android:exported="true" />
+    </application>
+
+</manifest>
