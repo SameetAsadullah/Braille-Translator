@@ -133,7 +133,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
             android:background="@null"
-            android:hint="Check-in-Date" />
+            android:hint="Check-in-Date"
+            android:gravity="center"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -155,7 +156,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
             android:background="@null"
-            android:hint="Check-out-Date" />
+            android:hint="Check-out-Date"
+            android:gravity="center"/>
     </RelativeLayout>
 
     <RelativeLayout
