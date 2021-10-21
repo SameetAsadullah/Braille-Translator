@@ -10,22 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Code">
         <activity
-            android:name=".HotelRegistration"
+            android:name=".Registered_Hotels_Screen"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Hotel_Selection"
             android:exported="true">
-
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:name=".Reservations_Screen"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".Hotel_Registration_Screen"
             android:exported="true" >
@@ -36,22 +31,33 @@
         </activity>
         <activity
             android:name=".Reserve_Screen"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".Vendor_Choose_Option_Screen"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".Customer_Choose_Option_Screen"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".Register_Screen"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".Login_Screen"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".Main_Screen"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
