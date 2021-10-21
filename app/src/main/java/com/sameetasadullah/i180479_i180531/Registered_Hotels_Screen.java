@@ -9,7 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotelRegistration extends AppCompatActivity {
+public class Registered_Hotels_Screen extends AppCompatActivity {
 
     RecyclerView rv;
     List<Hotel_Registraion_row> ls;
@@ -17,7 +17,7 @@ public class HotelRegistration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hotel_registration);
+        setContentView(R.layout.activity_registered_hotels_screen);
 
         rv = findViewById(R.id.rv);
         ls = new ArrayList<>();

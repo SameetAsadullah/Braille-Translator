@@ -16,21 +16,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-        android:layout_width="70dp"
-        android:layout_height="45dp"
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="45dp"
             android:layout_marginStart="320dp"
-        android:background="@drawable/plusbutton"
-        ></ImageView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="344dp"
-            android:text="+"
-            android:textSize="30dp"
-            android:textColor="@color/white"
-            ></TextView>
+            android:background="@drawable/plusbutton">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
     </RelativeLayout>
+
     <View
         android:background="#000"
         android:layout_width="305dp"
@@ -38,5 +40,4 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="15dp"
         android:layout_height="1dp"/>
-
 </RelativeLayout>
