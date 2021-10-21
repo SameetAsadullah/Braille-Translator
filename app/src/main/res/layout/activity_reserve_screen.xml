@@ -157,7 +157,8 @@
             android:layout_marginStart="15dp"
             android:background="@null"
             android:hint="Check-out-Date"
-            android:gravity="center"/>
+            android:gravity="center"
+            />
     </RelativeLayout>
 
     <RelativeLayout
