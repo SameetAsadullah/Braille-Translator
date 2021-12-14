@@ -34,7 +34,7 @@ public class Register_Screen extends AppCompatActivity {
         password = findViewById(R.id.Password_text);
         card = findViewById(R.id.Card_text);
         signup_Button = findViewById(R.id.sign_up_button);
-        hrs = new HRS(Register_Screen.this);
+        hrs = HRS.getInstance(Register_Screen.this);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

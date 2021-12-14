@@ -14,9 +14,10 @@ public class HRS {
     private Vector<Hotel> hotels;
     private Vector<Vendor> vendors;
     private writerAndReader readAndWrite;
+    private static HRS hrs;
 
     // constructor
-    public HRS(Context context) {
+    private HRS(Context context) {
         // initializing data members
         customers = new Vector<>();
         hotels = new Vector<>();
@@ -33,6 +34,12 @@ public class HRS {
     }
 
     // getters
+    public static HRS getInstance(Context context) {
+        if (hrs == null) {
+            hrs = new HRS(context);
+        }
+        return hrs;
+    }
     public Vector<Customer> getCustomers() {
         return customers;
     }
@@ -56,9 +63,7 @@ public class HRS {
     public void setReadAndWrite(writerAndReader readAndWrite) {
         this.readAndWrite = readAndWrite;
     }
-    public void setVendors(Vector<Vendor> vendors) {
-        this.vendors = vendors;
-    }
+    public void setVendors(Vector<Vendor> vendors) { this.vendors = vendors; }
 
     // function to check if customer with same email already exists or not
     public boolean validateCustomerEmail(String email) {
