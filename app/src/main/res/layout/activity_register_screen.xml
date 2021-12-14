@@ -51,11 +51,12 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/Name_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Name"
                     android:layout_marginStart="15dp"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:hint="Name" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -73,6 +74,7 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/Email_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Email"
@@ -95,6 +97,7 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/CNIC_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="CNIC"
@@ -117,6 +120,7 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/Address_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Address"
@@ -139,6 +143,7 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/Contact_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="15dp"
@@ -161,6 +166,7 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/Card_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Credit Card No"
@@ -183,6 +189,7 @@
                     android:background="@drawable/login_screen_et_bg"/>
 
                 <EditText
+                    android:id="@+id/Password_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Password"
