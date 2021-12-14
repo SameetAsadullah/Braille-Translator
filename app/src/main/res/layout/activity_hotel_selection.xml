@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Hotel_Selection">
+    tools:context=".presentationLayer.Hotel_Selection">
 
     <ImageView
         android:layout_width="20dp"

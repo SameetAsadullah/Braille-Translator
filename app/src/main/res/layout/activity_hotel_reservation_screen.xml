@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Hotel_Reservation_Screen">
+    tools:context=".presentationLayer.Hotel_Reservation_Screen">
 
     <TextView
         android:id="@+id/hotel"

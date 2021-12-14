@@ -13,47 +13,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Code">
         <activity
-            android:name=".Registered_Hotels_Screen"
+            android:name=".presentationLayer.Registered_Hotels_Screen"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Hotel_Selection"
+            android:name=".presentationLayer.Hotel_Selection"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Reservations_Screen"
+            android:name=".presentationLayer.Reservations_Screen"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Hotel_Registration_Screen"
+            android:name=".presentationLayer.Hotel_Registration_Screen"
             android:exported="true" >
         </activity>
         <activity
-            android:name=".Hotel_Reservation_Screen"
+            android:name=".presentationLayer.Hotel_Reservation_Screen"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Reserve_Screen"
+            android:name=".presentationLayer.Reserve_Screen"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Vendor_Choose_Option_Screen"
+            android:name=".presentationLayer.Vendor_Choose_Option_Screen"
             android:exported="true" >
         </activity>
         <activity
-            android:name=".Customer_Choose_Option_Screen"
+            android:name=".presentationLayer.Customer_Choose_Option_Screen"
             android:exported="true" >
         </activity>
         <activity
-            android:name=".Register_Screen"
+            android:name=".presentationLayer.Register_Screen"
             android:exported="true" >
         </activity>
         <activity
-            android:name=".Login_Screen"
+            android:name=".presentationLayer.Login_Screen"
             android:exported="true" >
         </activity>
         <activity
-            android:name=".Main_Screen"
+            android:name=".presentationLayer.Main_Screen"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

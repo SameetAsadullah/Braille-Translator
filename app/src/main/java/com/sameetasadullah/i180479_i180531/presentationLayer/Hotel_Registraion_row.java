@@ -1,4 +1,4 @@
-package com.sameetasadullah.i180479_i180531;
+package com.sameetasadullah.i180479_i180531.presentationLayer;
 
 public class Hotel_Registraion_row {
 
