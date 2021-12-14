@@ -8,6 +8,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sameetasadullah.i180479_i180531.logicLayer.Customer;
+import com.sameetasadullah.i180479_i180531.logicLayer.HRS;
 import com.sameetasadullah.i180479_i180531.logicLayer.Hotel;
 import com.sameetasadullah.i180479_i180531.logicLayer.Room;
 import com.sameetasadullah.i180479_i180531.logicLayer.Vendor;
@@ -83,13 +84,13 @@ public class writerAndReader {
                                     customers.add(
                                             new Customer(
                                                     contacts.getJSONObject(i).getInt("id"),
-                                                    contacts.getJSONObject(i).getString("name"),
                                                     contacts.getJSONObject(i).getString("email"),
                                                     contacts.getJSONObject(i).getString("password"),
+                                                    contacts.getJSONObject(i).getString("name"),
+                                                    contacts.getJSONObject(i).getString("address"),
                                                     contacts.getJSONObject(i).getString("phoneno"),
                                                     contacts.getJSONObject(i).getString("cnic"),
-                                                    contacts.getJSONObject(i).getString("accountno"),
-                                                    contacts.getJSONObject(i).getString("address")
+                                                    contacts.getJSONObject(i).getString("accountno")
                                             )
                                     );
                                 }
@@ -180,13 +181,13 @@ public class writerAndReader {
                                     vendors.add(
                                             new Vendor(
                                                     contacts.getJSONObject(i).getInt("id"),
-                                                    contacts.getJSONObject(i).getString("name"),
                                                     contacts.getJSONObject(i).getString("email"),
                                                     contacts.getJSONObject(i).getString("password"),
+                                                    contacts.getJSONObject(i).getString("name"),
+                                                    contacts.getJSONObject(i).getString("address"),
                                                     contacts.getJSONObject(i).getString("phoneno"),
                                                     contacts.getJSONObject(i).getString("cnic"),
-                                                    contacts.getJSONObject(i).getString("accountno"),
-                                                    contacts.getJSONObject(i).getString("address")
+                                                    contacts.getJSONObject(i).getString("accountno")
                                             )
                                     );
                                 }

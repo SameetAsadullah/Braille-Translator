@@ -36,7 +36,7 @@ public class Login_Screen extends AppCompatActivity {
         loginButton = findViewById(R.id.log_in_button);
         page_user = findViewById(R.id.tv_page);
         sign_up = findViewById(R.id.tv_sign_up);
-        hrs = new HRS(Login_Screen.this);
+        hrs = HRS.getInstance(Login_Screen.this);
 
         String page = getIntent().getStringExtra("Page");
         page_user.setText(page);
