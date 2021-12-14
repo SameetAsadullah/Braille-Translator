@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Reserve_Screen">
+    tools:context=".presentationLayer.Reserve_Screen">
 
     <ImageView
         android:id="@+id/back_button"

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register_Screen">
+    tools:context=".presentationLayer.Register_Screen">
 
     <ScrollView
         android:layout_width="match_parent"

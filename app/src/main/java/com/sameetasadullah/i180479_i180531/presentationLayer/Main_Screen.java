@@ -1,4 +1,4 @@
-package com.sameetasadullah.i180479_i180531;
+package com.sameetasadullah.i180479_i180531.presentationLayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sameetasadullah.i180479_i180531.R;
 import com.sameetasadullah.i180479_i180531.dataLayer.writerAndReader;
 import com.sameetasadullah.i180479_i180531.logicLayer.Hotel;
 import com.sameetasadullah.i180479_i180531.logicLayer.Room;

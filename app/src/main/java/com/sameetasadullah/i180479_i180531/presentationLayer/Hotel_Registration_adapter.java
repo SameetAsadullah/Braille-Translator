@@ -1,4 +1,4 @@
-package com.sameetasadullah.i180479_i180531;
+package com.sameetasadullah.i180479_i180531.presentationLayer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.sameetasadullah.i180479_i180531.R;
 
 import java.util.List;
 

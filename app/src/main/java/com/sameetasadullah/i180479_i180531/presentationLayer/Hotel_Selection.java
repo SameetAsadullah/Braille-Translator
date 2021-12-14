@@ -1,10 +1,12 @@
-package com.sameetasadullah.i180479_i180531;
+package com.sameetasadullah.i180479_i180531.presentationLayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.sameetasadullah.i180479_i180531.R;
 
 import java.util.ArrayList;
 import java.util.List;
