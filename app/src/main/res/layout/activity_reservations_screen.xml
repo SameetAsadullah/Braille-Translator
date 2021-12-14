@@ -13,22 +13,22 @@
         android:background="@drawable/backbutton"
         android:id="@+id/back_button"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"></ImageView>
+        android:layout_marginTop="20dp"/>
+
     <TextView
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:text="Old Reservations"
-        android:textColor="@color/black"
+        android:textColor="#000000"
         android:textSize="40dp"
-        android:textStyle="italic"
-        ></TextView>
+        android:textStyle="italic" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_marginTop="200dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginTop="200dp"/>
 
 </RelativeLayout>

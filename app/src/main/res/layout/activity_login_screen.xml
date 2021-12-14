@@ -47,7 +47,8 @@
             android:layout_height="match_parent"
             android:hint="Email"
             android:layout_marginStart="15dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:id="@+id/et_email"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -70,7 +71,8 @@
             android:hint="●●●●●●●●"
             android:layout_marginStart="15dp"
             android:background="@null"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:id="@+id/et_password"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -115,7 +117,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Customer"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:id="@+id/tv_page"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -127,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SIGN UP"
-            android:textColor="#FF0F0F"/>
+            android:textColor="#FF0F0F"
+            android:id="@+id/tv_sign_up"/>
     </LinearLayout>
 </RelativeLayout>
