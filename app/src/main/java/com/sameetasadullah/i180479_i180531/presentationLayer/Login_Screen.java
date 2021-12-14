@@ -34,6 +34,7 @@ public class Login_Screen extends AppCompatActivity {
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         loginButton = findViewById(R.id.log_in_button);
+        page_user = findViewById(R.id.tv_page);
         sign_up = findViewById(R.id.tv_sign_up);
         hrs = new HRS(Login_Screen.this);
 
