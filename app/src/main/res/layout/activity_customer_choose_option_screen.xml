@@ -7,15 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".presentationLayer.Customer_Choose_Option_Screen">
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/back_button"
-        android:id="@+id/back_button"
-        android:backgroundTint="#727272"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +25,7 @@
         <RelativeLayout
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:id="@+id/rl_customer_button">
+            android:id="@+id/rl_reserve_hotel_button">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -53,8 +44,9 @@
         <RelativeLayout
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_below="@+id/rl_customer_button"
-            android:layout_marginTop="30dp">
+            android:layout_below="@+id/rl_reserve_hotel_button"
+            android:layout_marginTop="30dp"
+            android:id="@+id/rl_view_old_reservations">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -71,5 +63,4 @@
                 android:textStyle="bold"/>
         </RelativeLayout>
     </RelativeLayout>
-
 </RelativeLayout>
