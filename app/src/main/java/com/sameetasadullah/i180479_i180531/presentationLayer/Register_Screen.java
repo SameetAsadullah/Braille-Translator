@@ -15,7 +15,7 @@ import com.sameetasadullah.i180479_i180531.logicLayer.HRS;
 
 public class Register_Screen extends AppCompatActivity {
 
-    String Page = getIntent().getStringExtra("Page");
+    String Page;
     ImageView backButton;
     EditText name,email,contact,card,cnic,address,password;
     RelativeLayout signup_Button;
@@ -24,6 +24,7 @@ public class Register_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_screen);
+        Page = getIntent().getStringExtra("Page");
         backButton = findViewById(R.id.back_button);
         name = findViewById(R.id.Name_text);
         email = findViewById(R.id.Email_text);
@@ -32,12 +33,12 @@ public class Register_Screen extends AppCompatActivity {
         address = findViewById(R.id.Address_text);
         password = findViewById(R.id.Password_text);
         card = findViewById(R.id.Card_text);
+        signup_Button = findViewById(R.id.sign_up_button);
         hrs = new HRS(Register_Screen.this);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register_Screen.this,Login_Screen.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -49,15 +50,15 @@ public class Register_Screen extends AppCompatActivity {
                 String Email=email.getText().toString();
                 String Contact=contact.getText().toString();
                 String Address=address.getText().toString();
-                String Password=name.getText().toString();
-                String Card=name.getText().toString();
+                String Password=password.getText().toString();
+                String Card=card.getText().toString();
 
                 if(Name.equals("") ||Cnic.equals("") ||Password.equals("") ||Card.equals("") ||Address.equals("") ||Contact.equals("") ||Email.equals("")  ){
                     Toast.makeText(Register_Screen.this,"Please Fill All Blocks",Toast.LENGTH_LONG).show();
                 }
                 else{
                     if(Page.equals("Customer")){
-                        if(hrs.validateCustomerEmail(Email)==Boolean.TRUE){
+                        if(!hrs.validateCustomerEmail(Email)){
                             Toast.makeText(Register_Screen.this,"Account with this Email Already Exists",Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -68,7 +69,7 @@ public class Register_Screen extends AppCompatActivity {
                         }
                     }
                     else{
-                        if(hrs.validateVendorEmail(Email)==Boolean.TRUE){
+                        if(!hrs.validateVendorEmail(Email)){
                             Toast.makeText(Register_Screen.this,"Account with this Email Already Exists",Toast.LENGTH_LONG).show();
                         }
                         else{
