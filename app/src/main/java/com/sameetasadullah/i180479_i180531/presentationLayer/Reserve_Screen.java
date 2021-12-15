@@ -80,6 +80,7 @@ public class Reserve_Screen extends AppCompatActivity {
                     try {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                         LocalDate localDate = LocalDate.parse(CheckinDate, formatter);
+                        LocalDate localDate1 = LocalDate.parse(CheckoutDate, formatter);
 
                         Vector<Hotel> hotels=hrs.getHotels(Location,Persons,localDate,TypeRoom,both);
                         if (hotels.isEmpty()==Boolean.TRUE){
