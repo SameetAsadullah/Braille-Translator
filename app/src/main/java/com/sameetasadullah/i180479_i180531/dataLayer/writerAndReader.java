@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -463,7 +464,7 @@ public class writerAndReader {
                     data.put("roomno", String.valueOf(room.getNumber()));
                     data.put("type", room.getType());
                     if (room.getAvailableDate() == null) {
-                        data.put("available_date", "0000-00-00");
+                        data.put("available_date", "null");
                     } else {
                         data.put("available_date", room.getAvailableDate().toString());
                     }
@@ -497,7 +498,7 @@ public class writerAndReader {
                                                 data.getJSONObject(i).getString("type")
                                         );
                                         String date = data.getJSONObject(i).getString("available_date");
-                                        if (date.equals("0000-00-00")) {
+                                        if (date.equals("null")) {
                                             r.setAvailableDate(null);
                                         } else {
                                             r.setAvailableDate(LocalDate.parse(date));
