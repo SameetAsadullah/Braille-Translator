@@ -1,14 +1,14 @@
 package com.sameetasadullah.i180479_i180531.logicLayer;
 
 public class Vendor {
-    private String name, address, email, password, phoneNo, CNIC, accountNo;
+    private String name, address, email, password, phoneNo, CNIC, accountNo, dp;
     private int ID;
 
     //constructors
     public Vendor() {
     }
     public Vendor(int id, String mail, String pass, String Name,
-                  String add, String phone, String cnic, String accNo) {
+                  String add, String phone, String cnic, String accNo, String dp) {
         ID = id;
         name = Name;
         address = add;
@@ -17,6 +17,7 @@ public class Vendor {
         accountNo = accNo;
         email = mail;
         password = pass;
+        this.dp = dp;
     }
 
     //getters
@@ -44,6 +45,7 @@ public class Vendor {
     public String getPhoneNo() {
         return phoneNo;
     }
+    public String getDp() { return dp; }
 
     //setters
     public void setAddress(String address) {
@@ -70,5 +72,6 @@ public class Vendor {
     public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
     }
+    public void setDp(String dp) { this.dp = dp; }
 }
 

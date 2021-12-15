@@ -60,6 +60,7 @@ public class Login_Screen extends AppCompatActivity {
                     if (page.equals("Vendor")) {
                         if (hrs.validateVendorAccount(email_string, password_string)) {
                             Intent intent = new Intent(Login_Screen.this, Vendor_Choose_Option_Screen.class);
+                            intent.putExtra("email", email_string);
                             startActivity(intent);
                             finish();
                         }
@@ -70,6 +71,7 @@ public class Login_Screen extends AppCompatActivity {
                     else if (page.equals("Customer")) {
                         if (hrs.validateCustomerAccount(email_string, password_string)) {
                             Intent intent = new Intent(Login_Screen.this, Customer_Choose_Option_Screen.class);
+                            intent.putExtra("email", email_string);
                             startActivity(intent);
                             finish();
                         }

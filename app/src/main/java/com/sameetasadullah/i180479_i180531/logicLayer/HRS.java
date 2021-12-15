@@ -1,7 +1,9 @@
 package com.sameetasadullah.i180479_i180531.logicLayer;
 
 import android.content.Context;
+import android.net.Uri;
 
+import com.sameetasadullah.i180479_i180531.dataLayer.VolleyCallBack;
 import com.sameetasadullah.i180479_i180531.dataLayer.writerAndReader;
 
 import java.time.LocalDate;
@@ -117,7 +119,8 @@ public class HRS {
 
     // function for customer registration
     public void registerCustomer(String name, String email, String pass,
-                                 String add, String phone, String cnic, String accNo) {
+                                 String add, String phone, String cnic, String accNo, Uri dp,
+                                 VolleyCallBack volleyCallBack) {
         int ID = 0;
 
         //getting maximum ID
@@ -129,14 +132,15 @@ public class HRS {
         ID++;
 
         //registering customer
-        Customer c = new Customer(ID, email, pass, name, add, phone, cnic, accNo);
+        Customer c = new Customer(ID, email, pass, name, add, phone, cnic, accNo, "");
+        readAndWrite.insertCustomerDataIntoServer(c, dp, volleyCallBack);
         customers.add(c);
-        readAndWrite.insertCustomerIntoServer(c);
     }
 
     //function for vendor registration
     public void registerVendor(String name, String email, String pass,
-                               String add, String phone, String cnic, String accNo) {
+                               String add, String phone, String cnic, String accNo, Uri dp,
+                               VolleyCallBack volleyCallBack) {
         int ID = 0;
 
         //getting maximum ID
@@ -148,9 +152,9 @@ public class HRS {
         ID++;
 
         //registering vendor
-        Vendor v = new Vendor(ID, email, pass, name, add, phone, cnic, accNo);
+        Vendor v = new Vendor(ID, email, pass, name, add, phone, cnic, accNo, "");
+        readAndWrite.insertVendorDataIntoServer(v, dp, volleyCallBack);
         vendors.add(v);
-        readAndWrite.insertVendorIntoServer(v);
     }
 
     //function for hotel registration

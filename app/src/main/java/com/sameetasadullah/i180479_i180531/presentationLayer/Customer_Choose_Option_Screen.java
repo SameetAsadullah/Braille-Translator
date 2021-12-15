@@ -8,9 +8,16 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.sameetasadullah.i180479_i180531.R;
+import com.sameetasadullah.i180479_i180531.logicLayer.Customer;
+import com.sameetasadullah.i180479_i180531.logicLayer.HRS;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Customer_Choose_Option_Screen extends AppCompatActivity {
     RelativeLayout reserve_hotel, view_old_reservations;
+    CircleImageView dp;
+    HRS hrs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,15 @@ public class Customer_Choose_Option_Screen extends AppCompatActivity {
 
         reserve_hotel = findViewById(R.id.rl_reserve_hotel_button);
         view_old_reservations = findViewById(R.id.rl_view_old_reservations);
+        dp = findViewById(R.id.display_pic);
+        hrs = HRS.getInstance(Customer_Choose_Option_Screen.this);
+
+        String email = getIntent().getStringExtra("email");
+        for(Customer customer : hrs.getCustomers()) {
+            if (customer.getEmail().equals(email)) {
+                Picasso.get().load(customer.getDp()).into(dp);
+            }
+        }
 
         reserve_hotel.setOnClickListener(new View.OnClickListener() {
             @Override
