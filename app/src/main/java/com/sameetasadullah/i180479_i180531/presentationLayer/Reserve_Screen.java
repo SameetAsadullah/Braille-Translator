@@ -77,21 +77,25 @@ public class Reserve_Screen extends AppCompatActivity {
                         both = Boolean.TRUE;
                         TypeRoom="";
                     }
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
-                    LocalDate localDate = LocalDate.parse(CheckinDate, formatter);
+                    try {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        LocalDate localDate = LocalDate.parse(CheckinDate, formatter);
 
-                    Vector<Hotel> hotels=hrs.getHotels(Location,Persons,localDate,TypeRoom,both);
-                    if (hotels.isEmpty()==Boolean.TRUE){
-                        Toast.makeText(Reserve_Screen.this,"No Hotels Found",Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        Intent intent = new Intent(Reserve_Screen.this, Hotel_Selection.class);
-                        intent.putExtra("Location",Location);
-                        intent.putExtra("Persons",Persons);
-                        intent.putExtra("localDate",localDate);
-                        intent.putExtra("TypeRoom",TypeRoom);
-                        intent.putExtra("both",both);
-                        startActivity(intent);
+                        Vector<Hotel> hotels=hrs.getHotels(Location,Persons,localDate,TypeRoom,both);
+                        if (hotels.isEmpty()==Boolean.TRUE){
+                            Toast.makeText(Reserve_Screen.this,"No Hotels Found",Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Intent intent = new Intent(Reserve_Screen.this, Hotel_Selection.class);
+                            intent.putExtra("Location",Location);
+                            intent.putExtra("Persons",Persons);
+                            intent.putExtra("localDate",localDate);
+                            intent.putExtra("TypeRoom",TypeRoom);
+                            intent.putExtra("both",both);
+                            startActivity(intent);
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(Reserve_Screen.this,"Kindly enter dates in correct format (dd/MM/yyyy)",Toast.LENGTH_LONG).show();
                     }
                 }
             }
