@@ -39,7 +39,15 @@ public class Reserve_Screen extends AppCompatActivity {
         single_room = findViewById(R.id.Single_box);
         double_room = findViewById(R.id.Double_box);
         hrs= HRS.getInstance(Reserve_Screen.this);
+
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         submitButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String Location,Persons,CheckinDate,CheckoutDate;
