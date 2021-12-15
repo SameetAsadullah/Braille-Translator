@@ -1,8 +1,19 @@
 package com.sameetasadullah.i180479_i180531.dataLayer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -15,6 +26,9 @@ import com.sameetasadullah.i180479_i180531.logicLayer.Vendor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,20 +38,73 @@ import java.util.Vector;
 
 public class writerAndReader {
     Context context;
+    String directoryUrl = "http://192.168.18.81/smd_project/";
 
     public writerAndReader(Context context) {
         this.context = context;
     }
 
-    public void insertCustomerIntoServer(Customer customer) {
-        String url="http://192.168.18.81/smd_project/insert_data.php";
+    @NonNull
+    private byte[] getByteArray(Uri image) {
+        Bitmap pic = null;
+        try {
+            pic = MediaStore.Images.Media.getBitmap(context.getContentResolver(), image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        pic.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    public void insertCustomerDataIntoServer(Customer customer, Uri dp, VolleyCallBack volleyCallBack) {
+        String url = directoryUrl + "insert_image.php";
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            if (obj.getString("code").equals("1")) {
+                                String imageUrl = directoryUrl + obj.getString("url");
+                                customer.setDp(imageUrl);
+                                insertCustomerIntoServer(customer,imageUrl, volleyCallBack);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context.getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e("GotError",""+error.getMessage());
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, DataPart> getByteData() throws AuthFailureError {
+                Map<String, DataPart> params = new HashMap<>();
+                long imageName = System.currentTimeMillis();
+                params.put("image", new DataPart(imageName + ".png", getByteArray(dp)));
+                return params;
+            }
+        };
+        Volley.newRequestQueue(context).add(volleyMultipartRequest);
+    }
+
+    private void insertCustomerIntoServer(Customer customer, String imageUrl, VolleyCallBack volleyCallBack) {
+        String url = directoryUrl + "insert_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // do nothing
+                        volleyCallBack.onSuccess();
                     }
                 },
                 new Response.ErrorListener() {
@@ -61,6 +128,7 @@ public class writerAndReader {
                 data.put("cnic", customer.getCNIC());
                 data.put("accountno", customer.getAccountNo());
                 data.put("address", customer.getAddress());
+                data.put("dp", imageUrl);
                 return data;
             }
         };
@@ -68,7 +136,7 @@ public class writerAndReader {
     }
 
     public void getCustomersFromServer(Vector<Customer> customers) {
-        String url="http://192.168.18.81/smd_project/get_data.php";
+        String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -78,19 +146,20 @@ public class writerAndReader {
                         try {
                             JSONObject object=new JSONObject(response);
                             if(object.getInt("reqcode")==1){
-                                JSONArray contacts=object.getJSONArray("data");
-                                for (int i=0;i<contacts.length();i++)
+                                JSONArray data=object.getJSONArray("data");
+                                for (int i=0;i<data.length();i++)
                                 {
                                     customers.add(
                                             new Customer(
-                                                    contacts.getJSONObject(i).getInt("id"),
-                                                    contacts.getJSONObject(i).getString("email"),
-                                                    contacts.getJSONObject(i).getString("password"),
-                                                    contacts.getJSONObject(i).getString("name"),
-                                                    contacts.getJSONObject(i).getString("address"),
-                                                    contacts.getJSONObject(i).getString("phoneno"),
-                                                    contacts.getJSONObject(i).getString("cnic"),
-                                                    contacts.getJSONObject(i).getString("accountno")
+                                                    data.getJSONObject(i).getInt("id"),
+                                                    data.getJSONObject(i).getString("email"),
+                                                    data.getJSONObject(i).getString("password"),
+                                                    data.getJSONObject(i).getString("name"),
+                                                    data.getJSONObject(i).getString("address"),
+                                                    data.getJSONObject(i).getString("phoneno"),
+                                                    data.getJSONObject(i).getString("cnic"),
+                                                    data.getJSONObject(i).getString("accountno"),
+                                                    data.getJSONObject(i).getString("dp")
                                             )
                                     );
                                 }
@@ -126,15 +195,56 @@ public class writerAndReader {
         Volley.newRequestQueue(context).add(request);
     }
 
-    public void insertVendorIntoServer(Vendor vendor) {
-        String url="http://192.168.18.81/smd_project/insert_data.php";
+    public void insertVendorDataIntoServer(Vendor vendor, Uri dp, VolleyCallBack volleyCallBack) {
+        String url = directoryUrl + "insert_image.php";
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            if (obj.getString("code").equals("1")) {
+                                String imageUrl = directoryUrl + obj.getString("url");
+                                vendor.setDp(imageUrl);
+                                insertVendorIntoServer(vendor,
+                                        imageUrl,
+                                        volleyCallBack);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context.getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e("GotError",""+error.getMessage());
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, DataPart> getByteData() throws AuthFailureError {
+                Map<String, DataPart> params = new HashMap<>();
+                long imageName = System.currentTimeMillis();
+                params.put("image", new DataPart(imageName + ".png", getByteArray(dp)));
+                return params;
+            }
+        };
+        Volley.newRequestQueue(context).add(volleyMultipartRequest);
+    }
+
+    private void insertVendorIntoServer(Vendor vendor, String imageUrl, VolleyCallBack volleyCallBack) {
+        String url = directoryUrl + "insert_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // do nothing
+                        volleyCallBack.onSuccess();
                     }
                 },
                 new Response.ErrorListener() {
@@ -158,6 +268,7 @@ public class writerAndReader {
                 data.put("cnic", vendor.getCNIC());
                 data.put("accountno", vendor.getAccountNo());
                 data.put("address", vendor.getAddress());
+                data.put("dp", imageUrl);
                 return data;
             }
         };
@@ -165,7 +276,7 @@ public class writerAndReader {
     }
 
     public void getVendorsFromServer(Vector<Vendor> vendors) {
-        String url="http://192.168.18.81/smd_project/get_data.php";
+        String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -175,19 +286,20 @@ public class writerAndReader {
                         try {
                             JSONObject object=new JSONObject(response);
                             if(object.getInt("reqcode")==1){
-                                JSONArray contacts=object.getJSONArray("data");
-                                for (int i=0;i<contacts.length();i++)
+                                JSONArray data=object.getJSONArray("data");
+                                for (int i=0;i<data.length();i++)
                                 {
                                     vendors.add(
                                             new Vendor(
-                                                    contacts.getJSONObject(i).getInt("id"),
-                                                    contacts.getJSONObject(i).getString("email"),
-                                                    contacts.getJSONObject(i).getString("password"),
-                                                    contacts.getJSONObject(i).getString("name"),
-                                                    contacts.getJSONObject(i).getString("address"),
-                                                    contacts.getJSONObject(i).getString("phoneno"),
-                                                    contacts.getJSONObject(i).getString("cnic"),
-                                                    contacts.getJSONObject(i).getString("accountno")
+                                                    data.getJSONObject(i).getInt("id"),
+                                                    data.getJSONObject(i).getString("email"),
+                                                    data.getJSONObject(i).getString("password"),
+                                                    data.getJSONObject(i).getString("name"),
+                                                    data.getJSONObject(i).getString("address"),
+                                                    data.getJSONObject(i).getString("phoneno"),
+                                                    data.getJSONObject(i).getString("cnic"),
+                                                    data.getJSONObject(i).getString("accountno"),
+                                                    data.getJSONObject(i).getString("dp")
                                             )
                                     );
                                 }
@@ -224,7 +336,7 @@ public class writerAndReader {
     }
 
     public void insertHotelIntoServer(Hotel hotel) {
-        String url="http://192.168.18.81/smd_project/insert_data.php";
+        String url = directoryUrl + "insert_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -262,7 +374,7 @@ public class writerAndReader {
     }
 
     public void getHotelsFromServer(Vector<Hotel> hotels) {
-        String url="http://192.168.18.81/smd_project/get_data.php";
+        String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -272,19 +384,19 @@ public class writerAndReader {
                         try {
                             JSONObject object=new JSONObject(response);
                             if(object.getInt("reqcode")==1){
-                                JSONArray contacts=object.getJSONArray("data");
-                                for (int i=0;i<contacts.length();i++)
+                                JSONArray data=object.getJSONArray("data");
+                                for (int i=0;i<data.length();i++)
                                 {
                                     hotels.add(
                                             new Hotel(
-                                                    contacts.getJSONObject(i).getInt("id"),
-                                                    contacts.getJSONObject(i).getString("name"),
-                                                    contacts.getJSONObject(i).getString("address"),
-                                                    contacts.getJSONObject(i).getString("location"),
-                                                    contacts.getJSONObject(i).getString("single_rooms"),
-                                                    contacts.getJSONObject(i).getString("double_rooms"),
-                                                    contacts.getJSONObject(i).getString("single_room_price"),
-                                                    contacts.getJSONObject(i).getString("double_room_price")
+                                                    data.getJSONObject(i).getInt("id"),
+                                                    data.getJSONObject(i).getString("name"),
+                                                    data.getJSONObject(i).getString("address"),
+                                                    data.getJSONObject(i).getString("location"),
+                                                    data.getJSONObject(i).getString("single_rooms"),
+                                                    data.getJSONObject(i).getString("double_rooms"),
+                                                    data.getJSONObject(i).getString("single_room_price"),
+                                                    data.getJSONObject(i).getString("double_room_price")
                                                     )
                                     );
                                 }
@@ -321,7 +433,7 @@ public class writerAndReader {
     }
 
     public void insertRoomsIntoServer(Hotel hotel) {
-        String url="http://192.168.18.81/smd_project/insert_data.php";
+        String url = directoryUrl + "insert_data.php";
         for (int i = 0; i < hotel.getRooms().size(); ++i) {
             Room room = hotel.getRooms().get(i);
             StringRequest request=new StringRequest(
@@ -364,7 +476,7 @@ public class writerAndReader {
     }
 
     public void getRoomsFromServer(Hotel hotel) {
-        String url="http://192.168.18.81/smd_project/get_data.php";
+        String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
@@ -374,23 +486,23 @@ public class writerAndReader {
                         try {
                             JSONObject object=new JSONObject(response);
                             if(object.getInt("reqcode")==1){
-                                JSONArray contacts=object.getJSONArray("data");
+                                JSONArray data=object.getJSONArray("data");
                                 Vector<Room> rooms = new Vector<>();
-                                for (int i=0;i<contacts.length();i++)
+                                for (int i=0;i<data.length();i++)
                                 {
-                                    int hotel_id = contacts.getJSONObject(i).getInt("hotel_id");
+                                    int hotel_id = data.getJSONObject(i).getInt("hotel_id");
                                     if (hotel_id == hotel.getID()) {
                                         Room r = new Room(
-                                                contacts.getJSONObject(i).getInt("roomno"),
-                                                contacts.getJSONObject(i).getString("type")
+                                                data.getJSONObject(i).getInt("roomno"),
+                                                data.getJSONObject(i).getString("type")
                                         );
-                                        String date = contacts.getJSONObject(i).getString("available_date");
+                                        String date = data.getJSONObject(i).getString("available_date");
                                         if (date.equals("0000-00-00")) {
                                             r.setAvailableDate(null);
                                         } else {
                                             r.setAvailableDate(LocalDate.parse(date));
                                         }
-                                        r.setAvailable(Boolean.parseBoolean(contacts.getJSONObject(i).getString("is_available")));
+                                        r.setAvailable(Boolean.parseBoolean(data.getJSONObject(i).getString("is_available")));
                                         rooms.add(r);
                                     }
                                 }
@@ -428,7 +540,7 @@ public class writerAndReader {
     }
 
     public void truncateATable(String tableName) {
-        String url="http://192.168.18.81/smd_project/truncate_table.php";
+        String url = directoryUrl + "truncate_table.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
