@@ -42,6 +42,7 @@
             android:background="@drawable/login_screen_et_bg"/>
 
         <EditText
+            android:id="@+id/Location_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
@@ -64,11 +65,12 @@
             android:background="@drawable/login_screen_et_bg"/>
 
         <EditText
+            android:id="@+id/Persons_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="No of Persons"
             android:layout_marginStart="15dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:hint="No of Persons" />
     </RelativeLayout>
 
     <LinearLayout
@@ -88,6 +90,7 @@
             android:textSize="16sp"/>
 
         <CheckBox
+            android:id="@+id/Single_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Single"
@@ -96,6 +99,7 @@
             android:layout_marginStart="10dp"/>
 
         <CheckBox
+            android:id="@+id/Double_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Double"
@@ -129,12 +133,13 @@
             android:background="@drawable/login_screen_et_bg"/>
 
         <EditText
+            android:id="@+id/Check_in_date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
             android:background="@null"
-            android:hint="Check-in-Date"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:hint="Check-in-Date" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -152,6 +157,7 @@
             android:background="@drawable/login_screen_et_bg"/>
 
         <EditText
+            android:id="@+id/Check_out_date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
