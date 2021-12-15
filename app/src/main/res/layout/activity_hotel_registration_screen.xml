@@ -15,6 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/back_button"
+                android:backgroundTint="#727272" />
+
             <TextView
                 android:id="@+id/hotel"
                 android:layout_width="wrap_content"
@@ -79,7 +88,7 @@
                 android:background="#000000"/>
 
             <EditText
-                android:id="@+id/tv_total_rooms"
+                android:id="@+id/tv_hotel_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/line1"
@@ -88,20 +97,20 @@
                 android:layout_marginEnd="40dp"
                 android:background="@null"
                 android:hint="Address"
-                android:textColor="#000000"/>
+                android:textColor="#000000" />
 
             <ImageView
                 android:id="@+id/line2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/tv_total_rooms"
+                android:layout_below="@id/tv_hotel_address"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="10dp"
                 android:background="#000000"/>
 
             <EditText
-                android:id="@+id/tv_total_price"
+                android:id="@+id/tv_hotel_loc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/line2"
@@ -116,7 +125,7 @@
                 android:id="@+id/line3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/tv_total_price"
+                android:layout_below="@id/tv_hotel_loc"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="10dp"
@@ -126,7 +135,7 @@
                 android:id="@+id/rooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_total_price"
+                android:layout_below="@+id/tv_hotel_loc"
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="40dp"
                 android:text="Rooms"

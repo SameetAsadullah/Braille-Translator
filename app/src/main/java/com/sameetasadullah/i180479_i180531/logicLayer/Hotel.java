@@ -5,14 +5,15 @@ import java.util.*;
 
 public class Hotel {
     private int ID, totalRooms;
-    private String singleRooms, doubleRooms, singleRoomPrice, doubleRoomPrice, name, address, location;
+    private String singleRooms, doubleRooms, singleRoomPrice, doubleRoomPrice, name, address, location, registered_by;
     private Vector<Room> rooms;
     private Vector<Reservation> reservations;
 
     //constructors
     public Hotel() {
     }
-    public Hotel(int id, String Name, String add, String loc, String sRooms, String dRooms, String sRoomPrice, String dRoomPrice) {
+    public Hotel(int id, String Name, String add, String loc, String sRooms, String dRooms,
+                 String sRoomPrice, String dRoomPrice, String registered_by) {
         //assigning values to data members
         ID = id;
         name = Name;
@@ -23,6 +24,7 @@ public class Hotel {
         location = loc;
         singleRoomPrice = sRoomPrice;
         doubleRoomPrice = dRoomPrice;
+        this.registered_by = registered_by;
         reservations = new Vector<>();
 
         //making rooms in hotel
@@ -72,6 +74,7 @@ public class Hotel {
     public String getDoubleRoomPrice() {
         return doubleRoomPrice;
     }
+    public String getRegistered_by() { return registered_by; }
 
     //setters
     public void setID(int ID) {
@@ -95,18 +98,13 @@ public class Hotel {
     public void setDoubleRooms(String doubleRooms) {
         this.doubleRooms = doubleRooms;
     }
-    public void setReservations(Vector<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+    public void setReservations(Vector<Reservation> reservations) { this.reservations = reservations; }
     public void setSingleRooms(String singleRooms) {
         this.singleRooms = singleRooms;
     }
-    public void setSingleRoomPrice(String singleRoomPrice) {
-        this.singleRoomPrice = singleRoomPrice;
-    }
-    public void setDoubleRoomPrice(String doubleRoomPrice) {
-        this.doubleRoomPrice = doubleRoomPrice;
-    }
+    public void setSingleRoomPrice(String singleRoomPrice) { this.singleRoomPrice = singleRoomPrice; }
+    public void setDoubleRoomPrice(String doubleRoomPrice) { this.doubleRoomPrice = doubleRoomPrice; }
+    public void setRegistered_by(String registered_by) { this.registered_by = registered_by; }
 
     //return rooms of hotel which can accommodate user requirements
     public Vector<Room> getRooms(String noOfPersons, LocalDate checkInDate, String roomType, Boolean both) {

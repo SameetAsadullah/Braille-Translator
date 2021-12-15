@@ -368,6 +368,7 @@ public class writerAndReader {
                 data.put("double_rooms", hotel.getDoubleRooms());
                 data.put("single_room_price", hotel.getSingleRoomPrice());
                 data.put("double_room_price", hotel.getDoubleRoomPrice());
+                data.put("registered_by", hotel.getRegistered_by());
                 return data;
             }
         };
@@ -397,7 +398,8 @@ public class writerAndReader {
                                                     data.getJSONObject(i).getString("single_rooms"),
                                                     data.getJSONObject(i).getString("double_rooms"),
                                                     data.getJSONObject(i).getString("single_room_price"),
-                                                    data.getJSONObject(i).getString("double_room_price")
+                                                    data.getJSONObject(i).getString("double_room_price"),
+                                                    data.getJSONObject(i).getString("registered_by")
                                                     )
                                     );
                                 }

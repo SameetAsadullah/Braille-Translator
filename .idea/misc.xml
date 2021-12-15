@@ -6,6 +6,8 @@
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/drawable/add_photo_icon.xml" value="0.2703125" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/drawable/login_screen_et_bg.xml" value="0.2703125" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/drawable/main_screen_button_bg.xml" value="0.2703125" />
+        <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/drawable/rectangle_bottom_curved.xml" value="0.2703125" />
+        <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/drawable/search_icon.xml" value="0.2703125" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/layout/activity_customer_choose_option_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/layout/activity_hotel_registration.xml" value="0.25416666666666665" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/layout/activity_hotel_registration_screen.xml" value="0.25416666666666665" />
@@ -22,14 +24,6 @@
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/layout/hotel_registration_row.xml" value="0.25416666666666665" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/layout/hotel_row.xml" value="0.25416666666666665" />
         <entry key="..\:/Uniii/Semester-VII/SMD/Project/Project_Code/app/src/main/res/layout/hotel_selection_row.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_customer_choose_option_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_hotel_registration_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_hotel_selection.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_registered_hotels_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_reservations_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_reserve_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/activity_vendor_choose_option_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/SMD_Project/app/src/main/res/layout/hotel_row.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
