@@ -159,7 +159,7 @@ public class HRS {
 
     //function for hotel registration
     public void registerHotel(String name, String add, String loc, String singleRooms, String doubleRooms,
-                              String singleRoomPrice, String doubleRoomPrice) {
+                              String singleRoomPrice, String doubleRoomPrice, String registered_by) {
         int ID = 0;
 
         //getting maximum ID
@@ -171,7 +171,7 @@ public class HRS {
         ID++;
 
         //registering hotel
-        Hotel h = new Hotel(ID, name, add, loc, singleRooms, doubleRooms, singleRoomPrice, doubleRoomPrice);
+        Hotel h = new Hotel(ID, name, add, loc, singleRooms, doubleRooms, singleRoomPrice, doubleRoomPrice, registered_by);
         hotels.add(h);
         readAndWrite.insertHotelIntoServer(h);
         readAndWrite.insertRoomsIntoServer(h);

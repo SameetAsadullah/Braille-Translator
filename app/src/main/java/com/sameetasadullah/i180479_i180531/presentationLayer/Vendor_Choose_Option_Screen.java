@@ -41,6 +41,7 @@ public class Vendor_Choose_Option_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Vendor_Choose_Option_Screen.this, Hotel_Registration_Screen.class);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });
@@ -48,6 +49,7 @@ public class Vendor_Choose_Option_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Vendor_Choose_Option_Screen.this, Registered_Hotels_Screen.class);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });
