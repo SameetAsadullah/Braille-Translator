@@ -40,6 +40,7 @@ public class Customer_Choose_Option_Screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Customer_Choose_Option_Screen.this, Reserve_Screen.class);
+                intent.putExtra("Email",email);
                 startActivity(intent);
             }
         });

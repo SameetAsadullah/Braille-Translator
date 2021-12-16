@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".presentationLayer.Hotel_Reservation_Screen">
 
+
+
     <TextView
         android:id="@+id/hotel"
         android:layout_width="wrap_content"
@@ -37,7 +39,7 @@
         android:layout_marginStart="170dp"
         android:id="@+id/sucessful"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hotel Name"
@@ -54,10 +56,9 @@
         android:layout_below="@id/tv_hotel_name"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
         android:background="#000000"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Total Rooms"
@@ -74,10 +75,9 @@
         android:layout_below="@id/tv_total_rooms"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
         android:background="#000000"/>
 
-    <TextView
+    <EditText
         android:id="@+id/tv_total_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,7 +94,6 @@
         android:layout_below="@id/tv_total_price"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
         android:background="#000000"/>
 
     <TextView
@@ -118,13 +117,13 @@
         android:textColor="#000000"
         android:textSize="40sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tv_rooms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/alloted"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Rooms #"
         android:textSize="16sp" />
 
@@ -135,7 +134,31 @@
         android:layout_below="@id/tv_rooms"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
         android:background="#000000"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="660dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="80dp"
+        android:id="@+id/END_button">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/main_screen_button_bg"
+            android:backgroundTint="#000000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:textColor="#FFFFFF"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+    </RelativeLayout>
 
 </RelativeLayout>

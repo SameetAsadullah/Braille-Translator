@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:id="@+id/hotel_sel_row_id"
     >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="15dp"
-        android:textSize="30dp"
-        android:gravity="left"
-        android:textColor="@color/black"
-        android:id="@+id/name"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            android:layout_marginStart="2dp"
+            android:layout_centerVertical="true"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:id="@+id/name"/>
+        <TextView
+            android:layout_marginLeft="120dp"
+            android:layout_width="80dp"
+            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:id="@+id/Location_hotel"
+            android:textSize="25dp"
+            />
+        <TextView
+            android:id="@+id/single_price"
+            android:layout_marginLeft="220dp"
+            android:layout_centerVertical="true"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            />
+     <TextView
+            android:id="@+id/double_price"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="320dp"
+            />
 
-        <RelativeLayout
-            android:layout_width="70dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="320dp"
-            android:background="@drawable/plusbutton">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:textSize="30dp"
-                android:textColor="@color/white"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
     </RelativeLayout>
-
     <View
-        android:background="#000"
-        android:layout_width="305dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="15dp"
+        android:background="@color/black"
+        android:layout_width="match_parent"
         android:layout_height="1dp"/>
-</RelativeLayout>
+</LinearLayout>

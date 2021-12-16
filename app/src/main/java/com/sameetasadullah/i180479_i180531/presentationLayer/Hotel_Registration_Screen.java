@@ -2,6 +2,7 @@ package com.sameetasadullah.i180479_i180531.presentationLayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -72,6 +73,7 @@ public class Hotel_Registration_Screen extends AppCompatActivity {
                                     totalSingleRooms_string, totalDoubleRooms_string,
                                     singleRoomPrice_string, doubleRoomPrice_string, email);
                             Toast.makeText(Hotel_Registration_Screen.this,"Registered Successfully",Toast.LENGTH_LONG).show();
+                            onBackPressed();
                         }
                         else {
                             Toast.makeText(Hotel_Registration_Screen.this,"Hotel with this name and location already exists",Toast.LENGTH_LONG).show();
