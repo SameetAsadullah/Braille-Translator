@@ -110,6 +110,7 @@ public class Hotel {
     public Vector<Room> getRooms(String noOfPersons, LocalDate checkInDate, String roomType, Boolean both) {
         int personsCount = 0;
         Vector<Room> searchedRooms = new Vector<>();
+
         for (int i = 0; i < totalRooms; ++i) {
             if (rooms.get(i).isAvailable() || checkInDate.isEqual(rooms.get(i).getAvailableDate()) ||
                     checkInDate.isAfter(rooms.get(i).getAvailableDate())) {
@@ -157,9 +158,9 @@ public class Hotel {
                         }
                     }
                 }
+                Reservation r1 = new Reservation(rooms, c, checkInDate, checkOutDate);
+                hotels.get(i).getReservations().add(r1);
             }
         }
-        Reservation r1 = new Reservation(rooms, c, checkInDate, checkOutDate);
-        reservations.add(r1);
     }
 }

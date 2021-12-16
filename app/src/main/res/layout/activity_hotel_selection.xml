@@ -8,22 +8,22 @@
     tools:context=".presentationLayer.Hotel_Selection">
 
     <ImageView
+        android:id="@+id/back_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/backbutton"
-        android:id="@+id/back_button"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"></ImageView>
+        android:layout_marginTop="20dp"
+        android:background="@drawable/backbutton" />
     <TextView
         android:layout_marginTop="50dp"
         android:layout_marginStart="105dp"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="Hotel"
-        android:textColor="@color/black"
+        android:textColor="#000000"
         android:textSize="35dp"
         android:textStyle="italic"
-        ></TextView>
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,9 +31,9 @@
         android:layout_marginStart="140dp"
         android:layout_marginTop="90dp"
         android:text="Selection"
-        android:textColor="@color/black"
+        android:textColor="#000000"
         android:textSize="35dp"
-        android:textStyle="italic"></TextView>
+        android:textStyle="italic"/>
 
     <View
         android:background="#000"
@@ -55,7 +55,7 @@
             android:layout_height="30dp"
             android:textSize="20dp"
             android:text="Name"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             />
         <View
             android:background="#000"
@@ -68,7 +68,7 @@
             android:layout_marginStart="10dp"
             android:textSize="20dp"
             android:text="Location"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             />
         <View
             android:layout_marginStart="1dp"
@@ -82,7 +82,7 @@
             android:layout_height="30dp"
             android:textSize="20dp"
             android:text="Single"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             />
         <View
             android:layout_marginStart="1dp"
@@ -96,7 +96,7 @@
             android:layout_height="30dp"
             android:textSize="20dp"
             android:text="Double"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             />
 
     </LinearLayout>

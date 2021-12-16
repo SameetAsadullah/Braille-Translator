@@ -23,13 +23,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Vector;
 
 public class Hotel_Selection_adapter extends RecyclerView.Adapter<Hotel_Selection_adapter.Hotel_Selection_Holder>{
     List<Hotel_Selection_row> ls;
     Context c;
-    public Hotel_Selection_adapter(List<Hotel_Selection_row> ls, Context c) {
+    Vector<Hotel> hotels;
+
+    public Hotel_Selection_adapter(List<Hotel_Selection_row> ls, Context c, Vector<Hotel> hotels) {
         this.c=c;
         this.ls=ls;
+        this.hotels = hotels;
     }
 
     @NonNull
@@ -59,15 +63,13 @@ public class Hotel_Selection_adapter extends RecyclerView.Adapter<Hotel_Selectio
                                 // Continue with delete operation
                                 Intent intent = new Intent(c,Hotel_Reservation_Screen.class);
                                 intent.putExtra("Email",((Hotel_Selection)c).Email);
-                                intent.putExtra("Hotel_name",ls.get(position).getName() );
-                                intent.putExtra("Hotel_Loc",ls.get(position).getLocation() );
+                                intent.putExtra("Hotel_name",ls.get(holder.getAdapterPosition()).getName() );
+                                intent.putExtra("Hotel_Loc",ls.get(holder.getAdapterPosition()).getLocation() );
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                                 LocalDate localDate = LocalDate.parse(((Hotel_Selection)c).checkInDate, formatter);
                                 LocalDate localDate1 = LocalDate.parse(((Hotel_Selection)c).checkOutDate, formatter);
 
-
-                                /////////////
-                                ((Hotel_Selection)c).hrs.makeReservation(((Hotel_Selection)c).Email,((Hotel_Selection)c).hrs.searchHotelByNameLoc(ls.get(position).getName(),ls.get(position).getLocation()),localDate,localDate1);
+                                ((Hotel_Selection)c).hrs.makeReservation(((Hotel_Selection)c).Email,hotels.get(holder.getAdapterPosition()),localDate,localDate1);
                                 c.startActivity(intent);
                             }
                         })
