@@ -3,6 +3,7 @@ package com.sameetasadullah.i180479_i180531.presentationLayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,6 +25,8 @@ public class Login_Screen extends AppCompatActivity {
     RelativeLayout loginButton;
     HRS hrs;
     TextView page_user, sign_up;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class Login_Screen extends AppCompatActivity {
         page_user = findViewById(R.id.tv_page);
         sign_up = findViewById(R.id.tv_sign_up);
         hrs = HRS.getInstance(Login_Screen.this);
+
+        sharedPreferences = getSharedPreferences("com.sameetasadullah.i180479_180531", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         String page = getIntent().getStringExtra("Page");
         page_user.setText(page);
@@ -59,6 +65,11 @@ public class Login_Screen extends AppCompatActivity {
                 else {
                     if (page.equals("Vendor")) {
                         if (hrs.validateVendorAccount(email_string, password_string)) {
+                            editor.putString("user", "Vendor");
+                            editor.putString("email", email_string);
+                            editor.putBoolean("loggedIn", true);
+                            editor.commit();
+                            editor.apply();
                             Intent intent = new Intent(Login_Screen.this, Vendor_Choose_Option_Screen.class);
                             intent.putExtra("email", email_string);
                             startActivity(intent);
@@ -70,6 +81,11 @@ public class Login_Screen extends AppCompatActivity {
                     }
                     else if (page.equals("Customer")) {
                         if (hrs.validateCustomerAccount(email_string, password_string)) {
+                            editor.putString("user", "Customer");
+                            editor.putString("email", email_string);
+                            editor.putBoolean("loggedIn", true);
+                            editor.commit();
+                            editor.apply();
                             Intent intent = new Intent(Login_Screen.this, Customer_Choose_Option_Screen.class);
                             intent.putExtra("email", email_string);
                             startActivity(intent);
@@ -79,6 +95,7 @@ public class Login_Screen extends AppCompatActivity {
                             Toast.makeText(Login_Screen.this, "Incorrect email and password", Toast.LENGTH_LONG).show();
                         }
                     }
+
                 }
             }
         });

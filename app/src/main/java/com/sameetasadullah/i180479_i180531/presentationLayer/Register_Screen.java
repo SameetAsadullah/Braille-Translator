@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,8 @@ public class Register_Screen extends AppCompatActivity {
     RelativeLayout signup_Button;
     HRS hrs;
     Uri imageURI = null;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class Register_Screen extends AppCompatActivity {
         hrs = HRS.getInstance(Register_Screen.this);
         addDisplayPic = findViewById(R.id.add_display_pic);
         dp = findViewById(R.id.display_pic);
+
+        sharedPreferences = getSharedPreferences("com.sameetasadullah.i180479_180531", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +97,11 @@ public class Register_Screen extends AppCompatActivity {
                                 @Override
                                 public void onSuccess() {
                                     pd.dismiss();
+                                    editor.putString("user", "Customer");
+                                    editor.putString("email", Email);
+                                    editor.putBoolean("loggedIn", true);
+                                    editor.commit();
+                                    editor.apply();
                                     Intent intent=new Intent(Register_Screen.this,Customer_Choose_Option_Screen.class);
                                     intent.putExtra("email", Email);
                                     startActivity(intent);
@@ -112,6 +123,11 @@ public class Register_Screen extends AppCompatActivity {
                                 @Override
                                 public void onSuccess() {
                                     pd.dismiss();
+                                    editor.putString("user", "Vendor");
+                                    editor.putString("email", Email);
+                                    editor.putBoolean("loggedIn", true);
+                                    editor.commit();
+                                    editor.apply();
                                     Intent intent=new Intent(Register_Screen.this,Vendor_Choose_Option_Screen.class);
                                     intent.putExtra("email", Email);
                                     startActivity(intent);
