@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.sameetasadullah.i180479_i180531.logicLayer.Customer;
 import com.sameetasadullah.i180479_i180531.logicLayer.HRS;
 import com.sameetasadullah.i180479_i180531.logicLayer.Hotel;
+import com.sameetasadullah.i180479_i180531.logicLayer.Reservation;
 import com.sameetasadullah.i180479_i180531.logicLayer.Room;
 import com.sameetasadullah.i180479_i180531.logicLayer.Vendor;
 import org.json.JSONArray;
@@ -436,6 +437,111 @@ public class writerAndReader {
         Volley.newRequestQueue(context).add(request);
     }
 
+    public void insertReservationIntoServer(Reservation reservation) {
+        String url = directoryUrl + "insert_data.php";
+        StringRequest request=new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // do nothing
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context,
+                                error.toString(),
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        ){
+            protected Map<String,String> getParams()
+            {
+                Map<String,String> data=new HashMap<String,String>();
+                data.put("tableName", "reservations");
+                data.put("hotel_name", reservation.getHotelName());
+                data.put("hotel_location", reservation.getHotelLocation());
+                data.put("total_rooms", reservation.getTotalRooms());
+                data.put("room_numbers", reservation.getRoomNumbers());
+                data.put("total_price", reservation.getTotalPrice());
+                data.put("check_in_date", reservation.getCheckInDate());
+                data.put("check_out_date", reservation.getCheckOutDate());
+                data.put("reserved_by", reservation.getCustomerEmail());
+                return data;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
+    public void getReservationsFromServer(Vector<Hotel> hotels) {
+        String url = directoryUrl + "get_data.php";
+        StringRequest request=new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject object=new JSONObject(response);
+                            if(object.getInt("reqcode")==1){
+                                JSONArray data=object.getJSONArray("data");
+                                for (int i=0;i<data.length();i++)
+                                {
+                                    String hotel_name = data.getJSONObject(i).getString("hotel_name");
+                                    String hotel_location = data.getJSONObject(i).getString("hotel_location");
+
+                                    for (int j = 0; j < hotels.size(); ++j) {
+                                        if (hotels.get(j).getName().equals(hotel_name) && hotels.get(j).getLocation().equals(hotel_location)) {
+                                            hotels.get(j).getReservations().add(new Reservation
+                                                    (
+                                                            hotel_name,
+                                                            hotel_location,
+                                                            data.getJSONObject(i).getString("total_rooms"),
+                                                            data.getJSONObject(i).getString("room_numbers"),
+                                                            data.getJSONObject(i).getString("total_price"),
+                                                            data.getJSONObject(i).getString("check_in_date"),
+                                                            data.getJSONObject(i).getString("check_out_date"),
+                                                            data.getJSONObject(i).getString("reserved_by")
+                                                    )
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                Toast.makeText(context,
+                                        "Failed to load data",
+                                        Toast.LENGTH_LONG
+                                ).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context,
+                                error.toString(),
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        ){
+            protected Map<String,String> getParams()
+            {
+                Map<String,String> data=new HashMap<String,String>();
+                data.put("tableName", "reservations");
+                return data;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
     public void insertRoomsIntoServer(Hotel hotel) {
         String url = directoryUrl + "insert_data.php";
         for (int i = 0; i < hotel.getRooms().size(); ++i) {
@@ -543,7 +649,7 @@ public class writerAndReader {
         Volley.newRequestQueue(context).add(request);
     }
 
-    public void truncateATable(String tableName) {
+    public void truncateATable(String tableName, VolleyCallBack volleyCallBack) {
         String url = directoryUrl + "truncate_table.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
@@ -551,7 +657,7 @@ public class writerAndReader {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // do nothing
+                        volleyCallBack.onSuccess();
                     }
                 },
                 new Response.ErrorListener() {

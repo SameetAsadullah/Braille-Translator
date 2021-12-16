@@ -1,5 +1,7 @@
 package com.sameetasadullah.i180479_i180531.logicLayer;
 
+import com.sameetasadullah.i180479_i180531.dataLayer.writerAndReader;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -141,7 +143,7 @@ public class Hotel {
     }
 
     //function for reserving room in a hotel
-    public void reserveRoom(LocalDate checkInDate, LocalDate checkOutDate, Customer c, Vector<Hotel> hotels) {
+    public Reservation reserveRoom(LocalDate checkInDate, LocalDate checkOutDate, Customer c, Vector<Hotel> hotels) {
         int temp = 0;
         for (int i = 0; i < rooms.size(); ++i) {
             rooms.get(i).setAvailable(false);
@@ -158,9 +160,33 @@ public class Hotel {
                         }
                     }
                 }
-                Reservation r1 = new Reservation(rooms, c, checkInDate, checkOutDate);
+
+                String roomNumbers = "";
+                for (int j = 0; j < rooms.size(); ++j) {
+                    roomNumbers += rooms.get(j).getNumber();
+                    if (j != rooms.size() - 1) {
+                        roomNumbers += ", ";
+                    }
+                }
+
+                int totalPriceCal=0;
+                for (int j=0;j<rooms.size();j++){
+                    if (rooms.get(j).getType().equals("Single")){
+                        totalPriceCal= totalPriceCal + Integer.parseInt(singleRoomPrice);
+                    }
+                    else{
+                        totalPriceCal= totalPriceCal + Integer.parseInt(doubleRoomPrice);
+                    }
+                }
+
+                Hotel hotel = hotels.get(i);
+                Reservation r1 = new Reservation(hotel.getName(), hotel.getLocation(),
+                        Integer.toString(rooms.size()), roomNumbers, Integer.toString(totalPriceCal),
+                        checkInDate.toString(), checkOutDate.toString(), c.getEmail());
                 hotels.get(i).getReservations().add(r1);
+                return r1;
             }
         }
+        return null;
     }
 }
