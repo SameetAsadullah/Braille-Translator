@@ -40,7 +40,8 @@ public class Registered_Hotels_Screen extends AppCompatActivity {
 
         for (Hotel hotel : hrs.getHotels()) {
             if (hotel.getRegistered_by().equals(email)) {
-                ls.add(new Hotel_Registraion_row(hotel.getName()));
+                ls.add(new Hotel_Registraion_row(hotel.getName(), hotel.getLocation(),
+                        hotel.getSingleRoomPrice(), hotel.getDoubleRoomPrice()));
             }
         }
 

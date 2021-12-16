@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,9 @@ public class Hotel_Registration_adapter
     @Override
     public void onBindViewHolder(@NonNull Hotel_Registration_adapter.Hotel_Registration_Holder holder, int position) {
         holder.name.setText(filteredList.get(position).getName());
+        holder.singlePrice.setText(filteredList.get(position).getSinglePrice());
+        holder.doublePrice.setText(filteredList.get(position).getDoublePrice());
+        holder.location.setText(filteredList.get(position).getLocation());
     }
 
     @Override
@@ -79,10 +83,13 @@ public class Hotel_Registration_adapter
     }
 
     public class Hotel_Registration_Holder extends RecyclerView.ViewHolder {
-        TextView name;
+        TextView name,singlePrice,doublePrice,location;
         public Hotel_Registration_Holder(@NonNull View itemView){
             super(itemView);
             name =itemView.findViewById(R.id.name);
+            singlePrice= itemView.findViewById(R.id.single_price);
+            doublePrice=itemView.findViewById(R.id.double_price);
+            location=itemView.findViewById(R.id.Location_hotel);
         }
     }
 }
