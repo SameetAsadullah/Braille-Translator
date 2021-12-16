@@ -23,7 +23,7 @@ import java.util.Vector;
 public class Hotel_Reservation_Screen extends AppCompatActivity {
 
     RelativeLayout endButton;
-    EditText hotelName,rooms,totalPrice,totalRooms;
+    TextView hotelName,rooms,totalPrice,totalRooms;
     HRS hrs;
     String Email,checkInDate,checkOutDate,HotelName,HotelLocation;
     Hotel h1;
@@ -31,26 +31,23 @@ public class Hotel_Reservation_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel_reservation_screen);
+
         hotelName = findViewById(R.id.tv_hotel_name);
         rooms = findViewById(R.id.tv_rooms);
         totalPrice = findViewById(R.id.tv_total_price);
         totalRooms = findViewById(R.id.tv_total_rooms);
         endButton = findViewById(R.id.END_button);
         hrs = HRS.getInstance(Hotel_Reservation_Screen.this);
-        Email = getIntent().getStringExtra("Email");
 
+        Email = getIntent().getStringExtra("Email");
         HotelName = getIntent().getStringExtra("Hotel_name");
         HotelLocation = getIntent().getStringExtra("Hotel_Loc");
 
         h1 = hrs.searchHotelByNameLoc(HotelName,HotelLocation);
 
-        /////////////
-
-        Toast.makeText(Hotel_Reservation_Screen.this,"Yello::::" + h1.getReservations().size(),Toast.LENGTH_LONG ).show();
-
         Vector<Reservation> res= h1.getReservations();
 
-        Reservation reservation=res.get(res.size());
+        Reservation reservation=res.get(res.size() - 1);
         Vector<Room> rooms1=reservation.getReservedRooms();
         hotelName.setText(h1.getName());
         totalRooms.setText(String.valueOf(rooms1.size()));
@@ -65,7 +62,7 @@ public class Hotel_Reservation_Screen extends AppCompatActivity {
             }
             roomFinal+= String.valueOf(rooms1.get(i).getNumber());
             if(i+1!= rooms1.size()){
-                roomFinal+=",";
+                roomFinal+=", ";
             }
         }
         totalPrice.setText(String.valueOf(totalPriceCal));
@@ -77,6 +74,7 @@ public class Hotel_Reservation_Screen extends AppCompatActivity {
                 Intent intent =new Intent(Hotel_Reservation_Screen.this,Customer_Choose_Option_Screen.class);
                 intent.putExtra("email",Email);
                 startActivity(intent);
+                finish();
             }
         });
 

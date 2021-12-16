@@ -29,10 +29,14 @@ public class HRS {
         // fetching old data from server
         readAndWrite.getCustomersFromServer(customers);
         readAndWrite.getVendorsFromServer(vendors);
-        readAndWrite.getHotelsFromServer(hotels);
-        for (int i = 0; i < hotels.size(); ++i) {
-            readAndWrite.getRoomsFromServer(hotels.get(i));
-        }
+        readAndWrite.getHotelsFromServer(hotels, new VolleyCallBack() {
+            @Override
+            public void onSuccess() {
+                for (int i = 0; i < hotels.size(); ++i) {
+                    readAndWrite.getRoomsFromServer(hotels.get(i));
+                }
+            }
+        });
     }
 
     // getters

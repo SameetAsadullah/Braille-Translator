@@ -375,7 +375,7 @@ public class writerAndReader {
         Volley.newRequestQueue(context).add(request);
     }
 
-    public void getHotelsFromServer(Vector<Hotel> hotels) {
+    public void getHotelsFromServer(Vector<Hotel> hotels, VolleyCallBack volleyCallBack) {
         String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
@@ -403,6 +403,7 @@ public class writerAndReader {
                                                     )
                                     );
                                 }
+                                volleyCallBack.onSuccess();
                             }
                             else {
                                 Toast.makeText(context,
