@@ -48,25 +48,11 @@ public class Hotel_Reservation_Screen extends AppCompatActivity {
         Vector<Reservation> res= h1.getReservations();
 
         Reservation reservation=res.get(res.size() - 1);
-        Vector<Room> rooms1=reservation.getReservedRooms();
+        System.out.println(res.size());
         hotelName.setText(h1.getName());
-        totalRooms.setText(String.valueOf(rooms1.size()));
-        int totalPriceCal=0;
-        String roomFinal="";
-        for (int i=0;i<rooms1.size();i++){
-            if (rooms1.get(i).getType().equals("Single")){
-                totalPriceCal= totalPriceCal + Integer.parseInt(h1.getSingleRoomPrice());
-            }
-            else{
-                totalPriceCal= totalPriceCal + Integer.parseInt(h1.getDoubleRoomPrice());
-            }
-            roomFinal+= String.valueOf(rooms1.get(i).getNumber());
-            if(i+1!= rooms1.size()){
-                roomFinal+=", ";
-            }
-        }
-        totalPrice.setText(String.valueOf(totalPriceCal));
-        rooms.setText(roomFinal);
+        totalRooms.setText(reservation.getTotalRooms());
+        totalPrice.setText(reservation.getTotalPrice());
+        rooms.setText(reservation.getRoomNumbers());
 
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +63,5 @@ public class Hotel_Reservation_Screen extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }

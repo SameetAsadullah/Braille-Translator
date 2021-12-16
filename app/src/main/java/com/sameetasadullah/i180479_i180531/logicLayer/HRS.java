@@ -35,6 +35,7 @@ public class HRS {
                 for (int i = 0; i < hotels.size(); ++i) {
                     readAndWrite.getRoomsFromServer(hotels.get(i));
                 }
+                readAndWrite.getReservationsFromServer(hotels);
             }
         });
     }
@@ -214,10 +215,17 @@ public class HRS {
         //finding customer and calling for reservation
         for (int i = 0; i < customers.size(); ++i) {
             if (customers.get(i).getEmail().equals(email)) {
-                h.reserveRoom(checkInDate, checkOutDate, customers.get(i), hotels);
-                readAndWrite.truncateATable("rooms");
-                for (int j = 0; j < hotels.size(); ++j) {
-                    readAndWrite.insertRoomsIntoServer(hotels.get(j));
+                Reservation reservation = h.reserveRoom(checkInDate, checkOutDate, customers.get(i), hotels);
+                readAndWrite.truncateATable("rooms", new VolleyCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        for (int j = 0; j < hotels.size(); ++j) {
+                            readAndWrite.insertRoomsIntoServer(hotels.get(j));
+                        }
+                    }
+                });
+                if (reservation != null) {
+                    readAndWrite.insertReservationIntoServer(reservation);
                 }
                 break;
             }
