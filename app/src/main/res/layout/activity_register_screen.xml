@@ -99,9 +99,9 @@
                     android:id="@+id/Email_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Email"
                     android:layout_marginStart="15dp"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:hint="Email / Phone no" />
             </RelativeLayout>
 
             <RelativeLayout

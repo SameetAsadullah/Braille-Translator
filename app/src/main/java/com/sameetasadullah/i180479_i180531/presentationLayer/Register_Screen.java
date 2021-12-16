@@ -79,7 +79,7 @@ public class Register_Screen extends AppCompatActivity {
                 else {
                     if (Page.equals("Customer")){
                         if (!hrs.validateCustomerEmail(Email)){
-                            Toast.makeText(Register_Screen.this,"Account with this Email Already Exists",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Register_Screen.this,"Account with this Email / Phone no Already Exists",Toast.LENGTH_LONG).show();
                         }
                         else {
                             ProgressDialog pd=new ProgressDialog(Register_Screen.this);
@@ -101,7 +101,7 @@ public class Register_Screen extends AppCompatActivity {
                     }
                     else {
                         if (!hrs.validateVendorEmail(Email)){
-                            Toast.makeText(Register_Screen.this,"Account with this Email Already Exists",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Register_Screen.this,"Account with this Email / Phone no Already Exists",Toast.LENGTH_LONG).show();
                         }
                         else {
                             ProgressDialog pd=new ProgressDialog(Register_Screen.this);
