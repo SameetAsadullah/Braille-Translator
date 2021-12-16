@@ -8,10 +8,43 @@ public class Reservation {
     private Customer customer;
     private LocalDate checkInDate, checkOutDate;
 
+    public Vector<Room> getReservedRooms() {
+        return reservedRooms;
+    }
+
+    public void setReservedRooms(Vector<Room> reservedRooms) {
+        this.reservedRooms = reservedRooms;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public LocalDate getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
     public Reservation(Vector<Room> rooms, Customer c, LocalDate inDate, LocalDate outDate) {
         reservedRooms = rooms;
         customer = c;
         checkInDate = inDate;
         checkOutDate = outDate;
     }
+
 }

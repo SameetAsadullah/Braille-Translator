@@ -67,7 +67,7 @@ public class Reserve_Screen extends AppCompatActivity {
                     String TypeRoom="";
                     if (single_room.isChecked()) {
                         single = Boolean.TRUE;
-                        TypeRoom="Signle";
+                        TypeRoom="Single";
                     }
                     if (double_room.isChecked()) {
                         doub = Boolean.TRUE;
@@ -90,9 +90,11 @@ public class Reserve_Screen extends AppCompatActivity {
                             Intent intent = new Intent(Reserve_Screen.this, Hotel_Selection.class);
                             intent.putExtra("Location",Location);
                             intent.putExtra("Persons",Persons);
-                            intent.putExtra("localDate",localDate);
+                            intent.putExtra("localDate",CheckinDate);
+                            intent.putExtra("checkoutDate",CheckoutDate);
                             intent.putExtra("TypeRoom",TypeRoom);
                             intent.putExtra("both",both);
+                            intent.putExtra("Email",getIntent().getStringExtra("email"));
                             startActivity(intent);
                         }
                     } catch (Exception e) {
