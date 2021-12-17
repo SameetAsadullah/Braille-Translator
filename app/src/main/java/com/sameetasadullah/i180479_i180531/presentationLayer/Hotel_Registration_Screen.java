@@ -80,6 +80,7 @@ public class Hotel_Registration_Screen extends AppCompatActivity {
                             SQLiteDatabase database = helper.getWritableDatabase();
                             ContentValues cv = new ContentValues();
                             cv.put(Reservations_Store.OneRegisteration._NAME,hotelName_string);
+                            cv.put(Reservations_Store.OneRegisteration._LOCATION,hotelLoc_string);
                             cv.put(Reservations_Store.OneRegisteration._ADDRESS,hotelAdd_string);
                             cv.put(Reservations_Store.OneRegisteration._SINGLEROOMS,totalSingleRooms_string);
                             cv.put(Reservations_Store.OneRegisteration._DOUBLEROOMS,totalDoubleRooms_string);
@@ -87,11 +88,8 @@ public class Hotel_Registration_Screen extends AppCompatActivity {
                             cv.put(Reservations_Store.OneRegisteration._DOUBLEPRICE,doubleRoomPrice_string);
                             cv.put(Reservations_Store.OneRegisteration._REGISTEREDBY,email);
                             double tep = database.insert(Reservations_Store.OneRegisteration.TABLENAME,null,cv);
-                            Toast.makeText(Hotel_Registration_Screen.this,"THIS REGISTERATION::::"+ tep,Toast.LENGTH_LONG ).show();
                             database.close();
                             helper.close();
-
-                            /////////
                             onBackPressed();
                         }
                         else {
