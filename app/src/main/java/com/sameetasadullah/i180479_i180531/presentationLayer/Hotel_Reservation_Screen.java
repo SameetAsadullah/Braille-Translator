@@ -77,7 +77,6 @@ public class Hotel_Reservation_Screen extends AppCompatActivity {
                 cv.put(Reservations_Store.OneReservation._ROOMS,reservation.getRoomNumbers());
                 cv.put(Reservations_Store.OneReservation._RESERVEDBY,Email);
                 double tep = database.insert(Reservations_Store.OneReservation.TABLENAME,null,cv);
-                Toast.makeText(Hotel_Reservation_Screen.this,"THIS::::"+ tep,Toast.LENGTH_LONG ).show();
                 database.close();
                 helper.close();
 
