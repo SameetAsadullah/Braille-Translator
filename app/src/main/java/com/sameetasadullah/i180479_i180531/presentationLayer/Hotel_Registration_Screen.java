@@ -2,7 +2,9 @@ package com.sameetasadullah.i180479_i180531.presentationLayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -73,6 +75,23 @@ public class Hotel_Registration_Screen extends AppCompatActivity {
                                     totalSingleRooms_string, totalDoubleRooms_string,
                                     singleRoomPrice_string, doubleRoomPrice_string, email);
                             Toast.makeText(Hotel_Registration_Screen.this,"Registered Successfully",Toast.LENGTH_LONG).show();
+                            //SQL LITE
+                            MyDBHelper helper = new MyDBHelper(Hotel_Registration_Screen.this);
+                            SQLiteDatabase database = helper.getWritableDatabase();
+                            ContentValues cv = new ContentValues();
+                            cv.put(Reservations_Store.OneRegisteration._NAME,hotelName_string);
+                            cv.put(Reservations_Store.OneRegisteration._ADDRESS,hotelAdd_string);
+                            cv.put(Reservations_Store.OneRegisteration._SINGLEROOMS,totalSingleRooms_string);
+                            cv.put(Reservations_Store.OneRegisteration._DOUBLEROOMS,totalDoubleRooms_string);
+                            cv.put(Reservations_Store.OneRegisteration._SINGLEPRICE,singleRoomPrice_string);
+                            cv.put(Reservations_Store.OneRegisteration._DOUBLEPRICE,doubleRoomPrice_string);
+                            cv.put(Reservations_Store.OneRegisteration._REGISTEREDBY,email);
+                            double tep = database.insert(Reservations_Store.OneRegisteration.TABLENAME,null,cv);
+                            Toast.makeText(Hotel_Registration_Screen.this,"THIS REGISTERATION::::"+ tep,Toast.LENGTH_LONG ).show();
+                            database.close();
+                            helper.close();
+
+                            /////////
                             onBackPressed();
                         }
                         else {

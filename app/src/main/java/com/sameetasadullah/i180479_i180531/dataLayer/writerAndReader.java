@@ -1,6 +1,9 @@
 package com.sameetasadullah.i180479_i180531.dataLayer;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -24,6 +27,9 @@ import com.sameetasadullah.i180479_i180531.logicLayer.Hotel;
 import com.sameetasadullah.i180479_i180531.logicLayer.Reservation;
 import com.sameetasadullah.i180479_i180531.logicLayer.Room;
 import com.sameetasadullah.i180479_i180531.logicLayer.Vendor;
+import com.sameetasadullah.i180479_i180531.presentationLayer.MyDBHelper;
+import com.sameetasadullah.i180479_i180531.presentationLayer.Reservations_Store;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +46,7 @@ import java.util.Vector;
 
 public class writerAndReader {
     Context context;
-    String directoryUrl = "http://192.168.18.81/smd_project/";
+    String directoryUrl = "http://192.168.1.7/smd_project/";
 
     public writerAndReader(Context context) {
         this.context = context;
@@ -376,12 +382,15 @@ public class writerAndReader {
         Volley.newRequestQueue(context).add(request);
     }
 
+
+
     public void getHotelsFromServer(Vector<Hotel> hotels, VolleyCallBack volleyCallBack) {
         String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
+                    @SuppressLint("Range")
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -408,9 +417,61 @@ public class writerAndReader {
                             }
                             else {
                                 Toast.makeText(context,
-                                        "Failed to load data",
+                                        "Failed to load data fromm Server",
                                         Toast.LENGTH_LONG
                                 ).show();
+                                ///////////
+                                MyDBHelper helper = new MyDBHelper(context);
+                                SQLiteDatabase db = helper.getReadableDatabase();
+                                String[] projection = new String[] {
+
+                                        Reservations_Store.OneRegisteration._NAME,
+                                        Reservations_Store.OneRegisteration._ID,
+                                        Reservations_Store.OneRegisteration._LOCATION,
+                                        Reservations_Store.OneRegisteration._ADDRESS,
+                                        Reservations_Store.OneRegisteration._SINGLEPRICE,
+                                        Reservations_Store.OneRegisteration._SINGLEROOMS,
+                                        Reservations_Store.OneRegisteration._DOUBLEROOMS,
+                                        Reservations_Store.OneRegisteration._DOUBLEPRICE,
+                                        Reservations_Store.OneRegisteration._REGISTEREDBY
+
+
+                                };
+                                String sort = Reservations_Store.OneRegisteration._ID + "ASC";
+                                Cursor c =db.query(Reservations_Store.OneRegisteration.TABLENAME,projection,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        sort
+                                );
+                                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                // LocalDate localDate = LocalDate.parse(CheckinDate, formatter);
+                                //LocalDate localDate1 = LocalDate.parse(CheckoutDate, formatter);
+                                //                    c.getString(c.getColumnIndex(Reservations_Store.OneReservation._NAME)),
+                                //
+
+
+                                while(c.moveToNext())
+                                {
+
+                                    hotels.add(
+                                              new Hotel(
+
+                                                      c.getInt(c.getColumnIndex(Reservations_Store.OneRegisteration._ID)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._NAME)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._ADDRESS)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._LOCATION)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._SINGLEROOMS)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._DOUBLEROOMS)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._SINGLEPRICE)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._DOUBLEPRICE)),
+                                                      c.getString(c.getColumnIndex(Reservations_Store.OneRegisteration._REGISTEREDBY))
+                                                    )
+                                        );
+
+
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -476,12 +537,15 @@ public class writerAndReader {
         Volley.newRequestQueue(context).add(request);
     }
 
+
+
     public void getReservationsFromServer(Vector<Hotel> hotels) {
         String url = directoryUrl + "get_data.php";
         StringRequest request=new StringRequest(
                 Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
+                    @SuppressLint("Range")
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -513,9 +577,62 @@ public class writerAndReader {
                             }
                             else {
                                 Toast.makeText(context,
-                                        "Failed to load data",
+                                        "Failed to load data from server",
                                         Toast.LENGTH_LONG
                                 ).show();
+                                ///////////
+                                MyDBHelper helper = new MyDBHelper(context);
+                                SQLiteDatabase db = helper.getReadableDatabase();
+                                String[] projection = new String[] {
+                                        Reservations_Store.OneReservation._NAME,
+                                        Reservations_Store.OneReservation._LOCATION,
+                                        Reservations_Store.OneReservation._CHECKIN,
+                                        Reservations_Store.OneReservation._CHECKOUT,
+                                        Reservations_Store.OneReservation._ROOMS,
+                                        Reservations_Store.OneReservation._TOTALPRICE,
+                                        Reservations_Store.OneReservation._TOTALROOMS,
+                                        Reservations_Store.OneReservation._RESERVEDBY
+
+                                };
+                                String sort = Reservations_Store.OneReservation._NAME + "ASC";
+                                Cursor c =db.query(Reservations_Store.OneReservation.TABLENAME,projection,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        sort
+                                );
+                                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                               // LocalDate localDate = LocalDate.parse(CheckinDate, formatter);
+                                //LocalDate localDate1 = LocalDate.parse(CheckoutDate, formatter);
+                                //                    c.getString(c.getColumnIndex(Reservations_Store.OneReservation._NAME)),
+                                //
+                                int i=0;
+
+
+                                while(c.moveToNext())
+                                {
+                                    @SuppressLint("Range") String hotel_name = c.getString(c.getColumnIndex(Reservations_Store.OneReservation._NAME));
+                                    @SuppressLint("Range") String hotel_location = c.getString(c.getColumnIndex(Reservations_Store.OneReservation._NAME));
+
+                                    for (int j = 0; j < hotels.size(); ++j) {
+                                        if (hotels.get(j).getName().equals(hotel_name) && hotels.get(j).getLocation().equals(hotel_location)) {
+                                            hotels.get(j).getReservations().add(new Reservation
+                                                    (
+                                                            hotel_name,
+                                                            hotel_location,
+                                                            c.getString(c.getColumnIndex(Reservations_Store.OneReservation._TOTALROOMS)),
+                                                            c.getString(c.getColumnIndex(Reservations_Store.OneReservation._ROOMS)),
+                                                            c.getString(c.getColumnIndex(Reservations_Store.OneReservation._TOTALPRICE)),
+                                                            c.getString(c.getColumnIndex(Reservations_Store.OneReservation._CHECKIN)),
+                                                            c.getString(c.getColumnIndex(Reservations_Store.OneReservation._CHECKOUT)),
+                                                            c.getString(c.getColumnIndex(Reservations_Store.OneReservation._RESERVEDBY))
+                                                    )
+                                            );
+                                        }
+                                    }
+                                    i+=1;
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
