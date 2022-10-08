@@ -5,5 +5,5 @@ A `Braille Translator` in `C++` using `Microsoft Visual Studio`. It also prints 
 
 ### Working Screenshot
   <div align="center">
-    <img src = "https://github.com/SameetAsadullah/Braille-Translator/blob/master/extras/working-ss-1.png" alt = "" width="600px"/>
+    <img src = "https://github.com/SameetAsadullah/Braille-Translator/blob/master/extras/working-ss-1.png" alt = "" width="800px"/>
   </div>
