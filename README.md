@@ -1,4 +1,4 @@
-<h1 align="center">Braille Translator</h1>
+<h1 align="center">Braille Translato</h1>
 
 ### Description
 A `Braille Translator` in `C++` using `Microsoft Visual Studio`. It also prints the `Frequency of Each Letter` in braille language. It reads Braille characters from the file named as `braille_20210402_131148144.txt`.
