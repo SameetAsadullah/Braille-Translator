@@ -189,7 +189,7 @@ int main()
 {
 	string countFreq = "";
 	string read_objects[29];
-	readFile("braille_20210402_131148144.txt", read_objects);
+	readFile("data/braille-mappings.txt", read_objects);
 	bool check = true;
 	char in;
 

@@ -1,1 +1,6 @@
-/src/x64/*
+/build/
+/.vs/
+*.user
+*.suo
+*.VC.db
+*.vsidx
